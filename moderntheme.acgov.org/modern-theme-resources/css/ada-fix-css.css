@@ -1,0 +1,39 @@
+@charset "utf-8";
+/* CSS Document */
+
+ a{font-weight:bold; color:#0B5B4B}
+a:hover, a:focus{ text-decoration: underline; color:#0c6453;}
+a.btn:hover{text-decoration:none;}
+body{color:#3E5256}
+.bg_colored-3{background-color:#117E68;}
+.icon--lg i, .color--brand{color:#117E68;}
+.btn{background:#0D6352;}
+.btn:hover, .btn:focus, .btn:active, .btn.active{background: #0C6453;}
+.navbar-nav li > a{color:#617989;}
+.navbar-nav li > a:focus, .navbar-nav li > a:hover {color:#0c6453;}
+a.countybranding__skip-banner{color:#157e6d;}
+
+/*footer ada fix*/
+.footer__menu a, .footer p{color: #CAD0D3}
+
+/*carousel ada fix*/
+.carousel-control:focus { outline:5px auto -webkit-focus-ring-color}
+.carousel-control { opacity: 1;}
+.carousel-control .material-icons { font-size:60px;}                           
+
+/*Accordion Text Color*/
+.panel-body{ color:#45565F;}
+
+/*newsletter component ADA fix*/
+.newsletter input#phone_subscription{margin-left:20px;}
+
+/*Video component Ada fix*/
+.video-container iframe{ border:0px;}
+
+/*Active Tabs color ADA fix*/
+.tabs-top li.active a{ color:#117E68!important}
+
+/*Ada fix for the disabled button*/
+.btn.disabled, .btn[disabled], fieldset[disabled] .btn{
+	opacity:.80;
+}

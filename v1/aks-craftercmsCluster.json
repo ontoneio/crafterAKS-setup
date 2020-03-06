@@ -1,0 +1,99 @@
+{
+    "aadProfile": null,
+    "addonProfiles": null,
+    "agentPoolProfiles": [
+      {
+        "availabilityZones": null,
+        "count": 1,
+        "enableAutoScaling": true,
+        "enableNodePublicIp": null,
+        "maxCount": 3,
+        "maxPods": 30,
+        "minCount": 1,
+        "name": "nodepool1",
+        "nodeLabels": null,
+        "nodeTaints": null,
+        "orchestratorVersion": "1.14.8",
+        "osDiskSizeGb": 100,
+        "osType": "Linux",
+        "provisioningState": "Succeeded",
+        "scaleSetEvictionPolicy": null,
+        "scaleSetPriority": null,
+        "spotMaxPrice": null,
+        "tags": null,
+        "type": "VirtualMachineScaleSets",
+        "vmSize": "Standard_DS2_v2",
+        "vnetSubnetId": null
+      }
+    ],
+    "apiServerAccessProfile": null,
+    "autoScalerProfile": {
+      "maxGracefulTerminationSec": "600",
+      "scaleDownDelayAfterAdd": "10m",
+      "scaleDownDelayAfterDelete": "10s",
+      "scaleDownDelayAfterFailure": "3m",
+      "scaleDownUnneededTime": "10m",
+      "scaleDownUnreadyTime": "20m",
+      "scaleDownUtilizationThreshold": "0.5",
+      "scanInterval": "10s"
+    },
+    "diskEncryptionSetId": null,
+    "dnsPrefix": "craftercms-dss-lab-docker-63d1e7",
+    "enablePodSecurityPolicy": false,
+    "enableRbac": true,
+    "fqdn": "craftercms-dss-lab-docker-63d1e7-4ac2e08d.hcp.eastus.azmk8s.io",
+    "id": "/subscriptions/63d1e735-daa2-4379-a057-18f5c450e62c/resourcegroups/dss-lab-docker/providers/Microsoft.ContainerService/managedClusters/craftercmsDemoCluster",
+    "identity": null,
+    "identityProfile": null,
+    "kubernetesVersion": "1.14.8",
+    "linuxProfile": {
+      "adminUsername": "azureuser",
+      "ssh": {
+        "publicKeys": [
+          {
+            "keyData": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDTAOGhPc8iUbI0n+hffBtyUlVnU6bTm16Ns3RQtC+LREY0HS9K8Rwhrzfxfu+Q0j0PyFLgjoZRaTXiiHv1Yvcsm34Oe5/h8MbYb9MCb7tekPvkN37MOiYy2VdMEFgc3vAkaxLAUE+i54Gv5sRqe2qRpD746MUlXYW7CwyruJPpITQmBdgFjfvkJ3mkufcS/w9GZ57QAhYMkkGVPMoYWw+YuOB/JbCDbz1Udjc4sYl2n4gLviix5+3xGBWt+WoiGoQzxTY4CBgb0d6rc2cJcbKgCMHt3o97KdHLdqRMWtuERXsswW+j0fpoQrj4dqK557w0CPZt9cuoQ93I70LigeGP ontoneio.mm@gmail.com\n"
+          }
+        ]
+      }
+    },
+    "location": "eastus",
+    "maxAgentPools": 10,
+    "name": "craftercmsDemoCluster",
+    "networkProfile": {
+      "dnsServiceIp": "10.0.0.10",
+      "dockerBridgeCidr": "172.17.0.1/16",
+      "loadBalancerProfile": {
+        "allocatedOutboundPorts": null,
+        "effectiveOutboundIps": [
+          {
+            "id": "/subscriptions/63d1e735-daa2-4379-a057-18f5c450e62c/resourceGroups/MC_dss-lab-docker_craftercmsDemoCluster_eastus/providers/Microsoft.Network/publicIPAddresses/ffcb6bbb-8966-4b7d-a65b-0c91d416061d",
+            "resourceGroup": "MC_dss-lab-docker_craftercmsDemoCluster_eastus"
+          }
+        ],
+        "idleTimeoutInMinutes": null,
+        "managedOutboundIps": {
+          "count": 1
+        },
+        "outboundIpPrefixes": null,
+        "outboundIps": null
+      },
+      "loadBalancerSku": "Standard",
+      "networkMode": null,
+      "networkPlugin": "kubenet",
+      "networkPolicy": null,
+      "outboundType": "loadBalancer",
+      "podCidr": "10.244.0.0/16",
+      "serviceCidr": "10.0.0.0/16"
+    },
+    "nodeResourceGroup": "MC_dss-lab-docker_craftercmsDemoCluster_eastus",
+    "privateFqdn": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "dss-lab-docker",
+    "servicePrincipalProfile": {
+      "clientId": "b747dbdc-2a6a-4bbf-8266-9537b5a5507c",
+      "secret": null
+    },
+    "tags": null,
+    "type": "Microsoft.ContainerService/ManagedClusters",
+    "windowsProfile": null
+  }
