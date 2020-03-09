@@ -1,3 +1,0 @@
-armAuth:
-    type: servicePrincipal
-    secretJSON: U3lzdGVtLkNvbGxlY3Rpb25zLkhhc2h0YWJsZQ==
