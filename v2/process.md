@@ -8,12 +8,25 @@ What prompted `v2` was coming across an Azure Resource Manager Template that loo
 This document is going to attempt to keep track of all the necessary steps involved in deploying CrafterCMS on AKS using the resource manager template. Going to try and do this all in `Powershell` for consistency.
 
 ## Process
-1. Create Azure Key Vault
+1. Define variables
+    - `$keyVaultName = <azure key-vault-name>`
+    - `$resourceGroupName = <resource-group>`
+    - `$resourceGroupLocation = <location>`
+    - 
+    ```powershell
+    $resourceGroupTags = @{ 
+    'environment' = '<env> == poc, dev, test, prod';
+    'dept' = '<itd-dept>';
+    'developer' = '<developer-name>'
+    }
+    ```
+    - `$certName = '<certificate-name>'`
 
-2. Get Azure Tenant Id
-```powershell
+2. Create a new Resource Group for Crafter to house needed Cloud Resources
+New-AzResourceGroup -Name $resourceGroupName -Location $resourceGroupLocation -Tag $resourceGroupTags
 
-```
+3. Create New Azure KeyVault
+New-AzKeyVault -Name $keyVaultName -ResourceGroupName $resourceGroupName -Location $resourceGroupLocation
 
 3. Create AD Service principal
     - a. Generate Certificate for Authentication
