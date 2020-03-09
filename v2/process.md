@@ -5,43 +5,11 @@ I realized I was missing needed Azure resources in order to get the configuratio
 
 What prompted `v2` was coming across an Azure Resource Manager Template that looked as though it could meet the needs of this project. This template is located in this repo under `templates/template.json`
 
-This document is going to attempt to keep track of all the necessary steps involved in deploying CrafterCMS on AKS using the resource manager template. Going to try and do this all in `Powershell` for consistency.
+This document is going to attempt to keep track of all the necessary steps involved in deploying CrafterCMS on AKS using the Azure DevOps. Going to try and use Powershell where scripting is needed.
 
-## Process
-1. Define variables
-    - `$keyVaultName = <azure key-vault-name>`
-    - `$resourceGroupName = <resource-group>`
-    - `$resourceGroupLocation = <location>`
-    - 
-    ```powershell
-    $resourceGroupTags = @{ 
-    'environment' = '<env> == poc, dev, test, prod';
-    'dept' = '<itd-dept>';
-    'developer' = '<developer-name>'
-    }
-    ```
-    - `$certName = '<certificate-name>'`
+## Continuous Deployment with AKS and AGIC using Azure Pipelines
+### Process
 
-2. Create a new Resource Group for Crafter to house needed Cloud Resources
-New-AzResourceGroup -Name $resourceGroupName -Location $resourceGroupLocation -Tag $resourceGroupTags
+- Note:  Following this tutorial [Continuous Deployment with AKS and AGIC using Azure Pipelines](https://github.com/Azure/application-gateway-kubernetes-ingress/blob/master/docs/how-tos/continuous-deployment.md)
 
-3. Create New Azure KeyVault
-New-AzKeyVault -Name $keyVaultName -ResourceGroupName $resourceGroupName -Location $resourceGroupLocation
-
-3. Create AD Service principal
-    - a. Generate Certificate for Authentication
-
-```powershell
-$servicePrincipal = New-AzADServicePrincipal
-
-$clientSecret = [System.Net.NetworkCredential]::new("", $servicePrincipal.Secret).Password
-$tenantID = (get-aztenant).Id
-$jsonresp = 
-@{
-    client_id=$servicePrincipal.ApplicationId 
-    client_secret=$clientSecret
-    tenant_id=$tenantID
-    }
-$jsonresp | ConvertTo-Json
-```
-From the above, `ApplicationId`, `Password`, and `ObjectId` all need to be recorded
+1. Create service principal to use with Azure Pipelines
