@@ -1,7 +1,7 @@
 # Get Azure Tenant ID
 $tenantID = (Get-AzContext).Tenant.Id
 # Write-Output $tenantID
-$keyVaultName = 'crafterPoC-Vault'
+$initKeyVaultName = 'crafterPoC-Vault'
 $resourceGroupName = 'dss-lab-crafter'
 $resourceGroupLocation = 'EastUS'
 $resourceGroupTags = @{ 
@@ -9,19 +9,22 @@ $resourceGroupTags = @{
     'dept' = 'DSS';
     'developer' = 'Jonathan A. Mitchell'
 }
-$certName = 'craftercms-poc-cert'
+
 
 # Create a new Resource Group for Crafter to house needed Cloud Resources
 New-AzResourceGroup -Name $resourceGroupName -Location $resourceGroupLocation -Tag $resourceGroupTags
-
 # Create New Azure KeyVault
-New-AzKeyVault -Name $keyVaultName -ResourceGroupName $resourceGroupName -Location $resourceGroupLocation
+New-AzKeyVault -Name $initKeyVaultName -ResourceGroupName $resourceGroupName -Location $resourceGroupLocation
+# Get KeyVault Name
+$VaultName = (Get-AzKeyVault).VaultName
+
 # Create AzKeyVault Certificate Policy
-$CertPolicy = New-AzKeyVaultCertificatePolicy -IssuerName 'Self' -SecretContentType 'application/x-pem-file' -SubjectName 'crafter-poc-demo' -KeySize 2048 -KeyType 'RSA'
-Add-AzKeyVaultCertificate -VaultName $keyVaultName -Name $certName -CertificatePolicy $CertPolicy
-Get-AzKeyVaultCertificateOperation -VaultName $keyVaultName -Name $certName
+$certName = 'craftercms-poc-cert'
+$CertPolicy = New-AzKeyVaultCertificatePolicy -IssuerName 'Self' -SecretContentType 'application/x-pem-file' -SubjectName 'CN=crafter-poc-demo' -KeySize 2048 -KeyType 'RSA'
+Add-AzKeyVaultCertificate -VaultName $VaultName -Name $certName -CertificatePolicy $CertPolicy
+Get-AzKeyVaultCertificateOperation -VaultName $VaultName -Name $certName
 # AzAd Service Principal Certificate
-$servicePrincipalCertificate = Get-AzKeyVaultCertificate -VaultName $keyVaultName -Name $certName
+$servicePrincipalCertificate = Get-AzKeyVaultCertificate -VaultName $VaultName -Name $certName
 
 # Create New Service Principal
 $servicePrincipal = New-AzADServicePrincipal -DisplayName 'crafterDemoSP' -Role 'Contributor' -CertValue $servicePrincipalCertificate
