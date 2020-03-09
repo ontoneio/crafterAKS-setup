@@ -40,8 +40,3 @@ $servicePrincipal = New-AzADServicePrincipal -DisplayName 'crafterDemoSP' -Role 
 #     tenant_id=$tenantID
 #     }
 # $jsonresp | ConvertTo-Json
-$resGroupNaming = @{
-    Name = 'dsslab-crafter-'
-    Date = (Get-Date).Date.ToShortDateString()
-}
-Write-Output "$($resGroupNaming.Name)$($resGroupNaming.Date)"
