@@ -58,7 +58,7 @@
             }
         },
         "aksAgentCount": {
-            "defaultValue": 3,
+            "defaultValue": 1,
             "minValue": 1,
             "maxValue": 50,
             "type": "int",
