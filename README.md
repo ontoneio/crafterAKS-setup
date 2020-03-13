@@ -8,8 +8,15 @@ What prompted `v2` was coming across an Azure Resource Manager Template that loo
 This document is going to attempt to keep track of all the necessary steps involved in deploying CrafterCMS on AKS using the Azure DevOps. Going to try and use Powershell where scripting is needed.
 
 ## Continuous Deployment with AKS and AGIC using Azure Pipelines
-### Process
+### Process Notes:
 
-- Note:  Following this tutorial [Continuous Deployment with AKS and AGIC using Azure Pipelines](https://github.com/Azure/application-gateway-kubernetes-ingress/blob/master/docs/how-tos/continuous-deployment.md)
+#### Prerequisites 
+- Azure Account or Tenant
+- Azure DevOps Organization
+- 
 
-1. Create service principal to use with Azure Pipelines
+- Note:  Following this tutorial [Continuous Deployment with AKS and AGIC using Azure Pipelines](https://github.com/Azure/application-gateway-kubernetes-ingress/blob/master/docs/how-tos/continuous-deployment.md) in combination with [Learning Azure Kubernetes Service (AKS)](https://www.linkedin.com/learning/learning-azure-kubernetes-service-aks)
+
+
+
+1. Setup Service Principal for Azure Pipelines to access Azure Resource Manager(ARM). This most likely only need to happen once.
