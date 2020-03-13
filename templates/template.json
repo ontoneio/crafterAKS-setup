@@ -42,7 +42,7 @@
             }
         },
         "aksDnsPrefix": {
-            "defaultValue": "aks",
+            "defaultValue": "aks-crafter",
             "type": "string",
             "metadata": {
                 "description": "Optional DNS prefix to use with hosted Kubernetes API server FQDN."
@@ -310,7 +310,7 @@
         },
         "aksEnableRBAC": {
             "type": "bool",
-            "defaultValue": false,
+            "defaultValue": true,
             "metadata": {
                 "description": "Enable RBAC on the AKS cluster."
             }
