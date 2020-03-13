@@ -5,3 +5,4 @@ authorized_keys
 *.csr
 *.key
 config/
+logs/
