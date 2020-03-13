@@ -49,9 +49,9 @@
             }
         },
         "aksAgentOsDiskSizeGB": {
-            "defaultValue": 40,
+            "defaultValue": 30,
             "minValue": 30,
-            "maxValue": 1023,
+            "maxValue": 50,
             "type": "int",
             "metadata": {
                 "description": "Disk size (in GB) to provision for each of the agent pool nodes. This value ranges from 30 to 1023."
@@ -60,14 +60,14 @@
         "aksAgentCount": {
             "defaultValue": 1,
             "minValue": 1,
-            "maxValue": 50,
+            "maxValue": 3,
             "type": "int",
             "metadata": {
                 "description": "The number of agent nodes for the cluster."
             }
         },
         "aksAgentVMSize": {
-            "defaultValue": "Standard_D2_v3",
+            "defaultValue": "Standard_A4_v2",
             "allowedValues": [
                 "Standard_A0",
                 "Standard_A1",
