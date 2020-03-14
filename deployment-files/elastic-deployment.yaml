@@ -46,7 +46,7 @@ spec:
           emptyDir: {}
       containers:
         - name: elasticsearch
-          image: dsstestdocker.azurecr.io/elasticsearch_6.6.0:demo
+          image: docker.elastic.co/elasticsearch/elasticsearch:6.6.0
           ports:
             - containerPort: 9200
           volumeMounts:
