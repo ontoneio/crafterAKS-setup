@@ -1,0 +1,3 @@
+version=$(az aks get-versions -l 'eastus' --query 'orchestrators[-1].orchestratorVersion' -o tsv)
+
+az aks create --resource-group $clusterResourceGroup --name $clusterName --enable-addons monitoring --kubernetes-version $version --generate-ssh-keys --location $region
