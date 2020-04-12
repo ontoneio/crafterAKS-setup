@@ -1,3 +1,24 @@
-version=$(az aks get-versions -l 'eastus' --query 'orchestrators[-1].orchestratorVersion' -o tsv)
+echo "START -> Create AKS Cluster $CLUSTER_NAME"
 
-az aks create --resource-group $clusterResourceGroup --name $clusterName --enable-addons monitoring --kubernetes-version $version --node-count 1 --generate-ssh-keys --location $region
+RG_EXISTS=$(az group exists -n $CLUSTER_RG)
+
+if [[ $RG_EXISTS -eq 'false' ]] 
+then 
+    az group create -l $REGION -n $CLUSTER_RG
+else
+    echo '---> $CLUSTER_RG EXISTS <---'
+fi
+
+K8_VERSION=$(az aks get-versions -l 'eastus' --query 'orchestrators[-1].orchestratorVersion' -o tsv)
+
+ACR_REG_ID=$(az acr show --name 'crafterDemoCR' --query 'id' --output tsv) 
+
+az aks create --name $CLUSTER_NAME --resource-group $CLUSTER_RG --enable-addons monitoring --kubernetes-version $K8_VERSION --node-count 1 --generate-ssh-keys --dns-name-prefix $DNS_NAME_PREFIX --network-plugin kubenet --location $REGION --node-vm-size $VM_SIZE --load-balancer-sku standard --attach-acr $ACR_REG_ID  --debug
+
+az aks wait --exists --interval 10 --name $CLUSTER_NAME --resource-group $CLUSTER_RG --timeout 1800 --debug
+
+az aks get-credentials --resource-group $CLUSTER_RG --name $CLUSTER_NAME --debug
+
+az aks use-dev-spaces --resource-group $CLUSTER_RG --name $CLUSTER_NAME --update --space development --yes --debug
+
+echo "END -> Create AKS Cluster"

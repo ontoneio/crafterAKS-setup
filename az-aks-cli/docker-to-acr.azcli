@@ -1,0 +1,4 @@
+az acr import \
+  --name crafterDemoCR \
+  --source docker.io/library/hello-world:latest \
+  --image hello-world:latest
