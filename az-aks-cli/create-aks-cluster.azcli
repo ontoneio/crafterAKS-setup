@@ -15,10 +15,10 @@ ACR_REG_ID=$(az acr show --name 'crafterDemoCR' --query 'id' --output tsv)
 
 az aks create --name $CLUSTER_NAME --resource-group $CLUSTER_RG --enable-addons monitoring --kubernetes-version $K8_VERSION --node-count 1 --generate-ssh-keys --dns-name-prefix $DNS_NAME_PREFIX --network-plugin kubenet --location $REGION --node-vm-size $VM_SIZE --load-balancer-sku standard --attach-acr $ACR_REG_ID  --debug
 
-az aks wait --exists --interval 10 --name $CLUSTER_NAME --resource-group $CLUSTER_RG --timeout 1800 --debug
+# az aks wait --exists --interval 10 --name $CLUSTER_NAME --resource-group $CLUSTER_RG --timeout 1800 --debug
 
-az aks get-credentials --resource-group $CLUSTER_RG --name $CLUSTER_NAME --debug
+# az aks get-credentials --resource-group $CLUSTER_RG --name $CLUSTER_NAME --debug
 
-az aks use-dev-spaces --resource-group $CLUSTER_RG --name $CLUSTER_NAME --update --space development --yes --debug
+# az aks use-dev-spaces --resource-group $CLUSTER_RG --name $CLUSTER_NAME --update --space development --yes --debug
 
 echo "END -> Create AKS Cluster"
