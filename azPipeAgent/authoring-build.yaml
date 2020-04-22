@@ -1,0 +1,52 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+variables:
+  - name: "artifact-repo-name"
+    value: "_Crafter-AppService"
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+
+  - task: Bash@3
+    inputs:
+      targetType: 'inline'
+      script: |
+        BUILD_DIR=$BUILD_ARTIFACTSTAGINGDIRECTORY
+        
+        if [ -d "$BUILD_DIR" ]; then
+            echo "$BUILD_DIR <<---EXISTS"
+        else 
+            echo "$BUILD_DIR does not exist----->>>CREATING...."
+            mkdir $BUILD_DIR
+            echo "##vso[task.setvariable variable=Build.ArtifactStagingDirectory]$BUILD_DIR"
+        fi
+        
+        BINARIES_DIR=$BUILD_BINARIESDIRECTORY
+        
+        if [ -d "$BINARIES_DIR" ]; then
+            echo "$BINARIES_DIR <<---EXISTS"
+        else 
+            echo "$BINARIES_DIR does not exist----->>>CREATING...."
+            mkdir $BINARIES_DIR
+            echo "##vso[task.setvariable variable=Build.BinariesDirectory]$BINARIES_DIR"
+        fi
+      workingDirectory: '$(System.DefaultWorkingDirectory)'
+      failOnStderr: true
+
+  - task: Gradle@2
+    inputs:
+      gradleWrapperFile: '$(System.DefaultWorkingDirectory)/$(Build.ArtifactStagingDirectory)/gradlew'
+      workingDirectory: '$(System.DefaultWorkingDirectory)/$(Build.ArtifactStagingDirectory)/'
+      options: '-Penv=authoring'
+      tasks: 'init build deploy bundle'
+      publishJUnitResults: false
+      javaHomeOption: 'JDKVersion'
+      sonarQubeRunAnalysis: false
